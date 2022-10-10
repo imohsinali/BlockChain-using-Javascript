@@ -1,0 +1,19 @@
+{
+  "name": "blockchain-using-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "block.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imohsinali/BlockChain-using-Javascript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imohsinali/BlockChain-using-Javascript/issues"
+  },
+  "homepage": "https://github.com/imohsinali/BlockChain-using-Javascript#readme"
+}
