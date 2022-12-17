@@ -1,5 +1,6 @@
 
-const Intialdifficulty=3
+export const mineRate=1000//1ms
+const Intialdifficulty=5
 export const GENESIS_DATA={
     timestamp:"1",
     prevHash:"0x00",
