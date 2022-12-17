@@ -1,7 +1,7 @@
-const {GENESIS_DATA}= require("./config")
-const cryptoHash =require('./cryptoHash')
+import {GENESIS_DATA} from './config.js'
+import {cryptoHash} from './cryptoHash.js'
 
-class Block{
+export class Block{
     constructor({ timestamp, prevHash,hash,data}){
         this.timestamp=timestamp
         this.prevHash=prevHash
@@ -12,20 +12,19 @@ class Block{
         return new this(GENESIS_DATA)
     }
     static mineBlock({prevBlock,data}){
-        const timestamp=new Date()
+        const timestamp= new Date()
         const prevHash= prevBlock.hash
         // console.log(prevBlock)
         return new this({
-            timestamp:new Date(),
+            timestamp,
             prevHash,
             data,
             hash:cryptoHash(timestamp,prevHash,data)
     })
     }
 }
-const block1=new Block({data:"Mohsin",prevHash:'0x123',hash:"0x1244"})
+// const block1=new Block({data:"Mohsin",prevHash:'0x123',hash:"0x1244"})
 
-module.exports=Block
 // // console.log(block1)
 // const genesisBlock=Block.genesis()
 // // console.log(genesisBlock)
