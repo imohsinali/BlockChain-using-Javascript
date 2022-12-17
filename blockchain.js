@@ -14,6 +14,19 @@ export class Blockchain{
         })
         this.chain.push(newBlock)
     }
+    replaceChain(chain)
+    {
+        if(chain<=this.chain.length)
+        {
+           console.log("The incoming chian is not longer") 
+           return 
+        }
+        if(!Blockchain.isValidChain(chain)){
+            console.log("The incoming chain is not valid")
+            return
+        }
+        this.chain=chain
+    }
     static isValidChain(chain)
     {
         // if(chain[0]!==Block.genesis())
@@ -29,21 +42,23 @@ export class Blockchain{
 
         for(let i=1;i<chain.length;i++)
         {
-            const {timestamp,prevHash,hash,data}=chain[i]// destrusture.
+            const {timestamp,prevHash,hash,data,difficulty,nonce}=chain[i]// destrusture.
             const realLastHash=chain[i-1].hash
             if(prevHash!==realLastHash)
             {
-        console.warn("m2")
+                console.warn('1')
 
             return false
 
             }
-            const validatedHash=cryptoHash(timestamp,prevHash,data)
+            const validatedHash=cryptoHash(timestamp,prevHash,data,difficulty,nonce)
+            console.warn(nonce)
             if(hash!==validatedHash)
             {
-             console.warn(hash)
-             console.warn(validatedHash)
 
+                console.warn(hash)
+                console.warn(validatedHash)
+                console.warn('2')
             return false
 
             }
@@ -53,9 +68,9 @@ export class Blockchain{
 }
 const blockchain=new Blockchain()
 blockchain.addBlock({data:"block1"})
-// blockchain.addBlock({data:"block2"})
+blockchain.addBlock({data:"block2"})
 // blockchain.addBlock({data:"block2"})
 const result=Blockchain.isValidChain(blockchain.chain)
 console.log(result)
 
-// console.log(blockchain)
+console.log(blockchain)
