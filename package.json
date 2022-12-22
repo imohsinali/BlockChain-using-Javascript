@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/imohsinali/BlockChain-using-Javascript/issues"
   },
-  "homepage": "https://github.com/imohsinali/BlockChain-using-Javascript#readme"
+  "homepage": "https://github.com/imohsinali/BlockChain-using-Javascript#readme",
+  "dependencies": {
+    "hex-to-binary": "^1.0.1"
+  }
 }

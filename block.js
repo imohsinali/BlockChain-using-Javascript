@@ -1,4 +1,4 @@
-import {GENESIS_DATA} from './config.js'
+import {GENESIS_DATA, mineRate} from './config.js'
 import {cryptoHash} from './cryptoHash.js'
 
 export class Block{
@@ -16,12 +16,13 @@ export class Block{
     static mineBlock({prevBlock,data}){
         let hash ,timestamp;
         const prevHash= prevBlock.hash
-        const {difficulty}=prevBlock
+        let {difficulty}=prevBlock
         // console.log(prevBlock)
         let nonce=0;
         do{
             nonce++;
             timestamp=Date.now()
+            difficulty=Block.adjustDificulty(prevBlock,timestamp)
             hash=  cryptoHash(timestamp,prevHash,data,difficulty,nonce)
         }while(hash.substring(0,difficulty)!=='0'.repeat(difficulty))
         return new this({
@@ -32,6 +33,17 @@ export class Block{
             difficulty,
             nonce
     })
+    }
+    static adjustDificulty(orginalBlock,timestamp)
+
+    {
+        const {difficulty}=orginalBlock
+        if(difficulty<1)
+        return 1
+        const differnce=timestamp-orginalBlock.timestamp;
+        if(differnce>mineRate)
+        return difficulty-1;
+        return difficulty+1;
     }
 }
 // const block1=new Block({data:"Mohsin",prevHash:'0x123',hash:"0x1244"})
